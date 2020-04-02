@@ -56,4 +56,12 @@ export class PeliculasService {
     return this.http.get( url ).pipe( map( (res: any) => { this.peliculas = res.results; console.log(this.peliculas); return res.results; } ));
   }
 
+  getPelicula( id: string ) {
+    // Para llamar a la url de populares se debe adjuntar el apiKey con &api_key=${this.apiKey}&language=es`
+    const url = `${ this.urlMovieDB }/movie/${ id }?api_key=${ this.apiKey }&language=es`;
+
+    // En este método hay que borrar el result, o a su vez si produce un undifined
+    return this.http.get( url ).pipe( map( (res: any) => res ));
+  }
+
 }
